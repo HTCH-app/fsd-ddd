@@ -1,0 +1,33 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fsd-ddd/application": ["libs/core/application/src/index.ts"],
+      "@fsd-ddd/domain": ["libs/core/domain/src/index.ts"],
+      "@fsd-ddd/infra": ["libs/core/infra/src/index.ts"],
+      "@fsd-ddd/web/*": ["libs/web/src/lib/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp",
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "**e2e/**/*",
+    "dist/fsd-ddd/**/*"
+  ]
+}
