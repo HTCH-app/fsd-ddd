@@ -3,7 +3,9 @@
 import { FC } from "react";
 import { useAddNoteButton } from "./use-add-note-button";
 
-export const AddNoteButton:FC = () => {
-    const {handleClick} = useAddNoteButton()
-    return <button onClick={handleClick}>Add Note</button>
+export const AddNoteButton: FC = () => {
+    const { handleClick, isPending } = useAddNoteButton()
+    return <button disabled={isPending} onClick={handleClick}>Add Note
+        {isPending ? <>…</> : null}
+    </button>
 }
