@@ -1,4 +1,4 @@
-import { Hono } from 'hono'
+import { Hono } from 'hono/quick'
 import { zValidator } from '@hono/zod-validator'
 import { addNoteCommand } from '../commands/add-note-command'
 import { AddNoteUseCaseDtoSchema } from '@fsd-ddd/application';
