@@ -1,12 +1,29 @@
 import { Hono } from 'hono/quick'
 import { HTTPException } from 'hono/http-exception'
 import { zValidator } from '@hono/zod-validator'
-import { addNoteCommand } from '../commands/add-note-command'
-import { AddNoteUseCaseDtoSchema } from '@fsd-ddd/application';
+import { addNoteCommand, listNotesCommand } from '../commands'
+import { AddNoteUseCaseDtoSchema, ListNotesUseCaseDtoSchema } from '@fsd-ddd/application';
 
 export const notesApp = new Hono()
+  .get(
+    '/listForOwnerId',
+    async (c) => {
+
+      const result = await listNotesCommand({
+        ownerId: 'fake-owner-id'
+      })
+      if (result.isFail()) throw new HTTPException(400, { message: result.error() })
+      const notes = result.value()
+      return c.json(
+        {
+          ok: true,
+          notes,
+        },
+      )
+    }
+  )
   .post(
-    '/',
+    '/addNote',
     zValidator(
       'json',
       AddNoteUseCaseDtoSchema

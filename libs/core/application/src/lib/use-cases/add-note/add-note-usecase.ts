@@ -1,21 +1,31 @@
-import { NoteRepoTrait } from "@fsd-ddd/domain";
-import { Fail, IUseCase, Ok, Result } from "rich-domain";
+import { Note, NoteRepoTrait } from "@fsd-ddd/domain";
+import { Fail, ID, IUseCase, Ok, Result } from "rich-domain";
 import { AddNoteUseCaseDto } from "./add-note-usecase-dto";
 
-export interface Deps {
+export interface AddNoteUseCaseDeps {
 	notesRepo: NoteRepoTrait;
 }
 
-export class AddNoteUseCase implements IUseCase<AddNoteUseCaseDto, Result<void>>{
+export type AddNoteUseCaseResponse = void;
+
+export class AddNoteUseCase implements IUseCase<AddNoteUseCaseDto, Result<AddNoteUseCaseResponse>>{
 
 	constructor(
-		protected readonly deps: Deps
+		protected readonly deps: AddNoteUseCaseDeps
 	) { }
 
-	async execute(data: AddNoteUseCaseDto): Promise<Result<void, string>> {
+	async execute(data: AddNoteUseCaseDto): Promise<Result<AddNoteUseCaseResponse, string>> {
 		try {
-			// Do Stuff with data etc.
-			// Do Stuff with this.deps.notesRepo etc.
+			const id = ID.create()
+			const noteResult = Note.create({
+				id,
+			})
+			if (noteResult.isFail()) return Fail(noteResult.error(), 'BAD_REQUEST');
+			const note = noteResult.value();
+
+			const saveResult = await this.deps.notesRepo.save(note);
+			if (saveResult.isFail()) return Fail(saveResult.error(), 'INTERNAL_SERVER_ERROR');
+
 			return Ok();
 		} catch (error) {
 			return Fail('Something went wrong', 'INTERNAL_SERVER_ERROR');

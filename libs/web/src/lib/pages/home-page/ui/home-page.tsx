@@ -1,9 +1,9 @@
-import { AddNoteButton } from "@fsd-ddd/web/features/add-notes-button";
+import { NotesWidget } from "@fsd-ddd/web/widgets/notes-widget";
 import { FC } from "react";
 
-export const HomePage:FC = () => {
+export const HomePage: FC = () => {
     return <div>
         <h1>Home Page</h1>
-        <AddNoteButton />
+        <NotesWidget />
     </div>
 }

@@ -1,0 +1,1 @@
+export * from './note-to-model.adapter'

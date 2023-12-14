@@ -1,0 +1,1 @@
+export const mutationKey = 'add-note-button'

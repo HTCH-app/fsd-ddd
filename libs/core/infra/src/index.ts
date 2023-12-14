@@ -1,1 +1,1 @@
-export * from './lib/api/hono';
+export * from './lib/api/hono-notes';

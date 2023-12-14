@@ -1,21 +1,28 @@
-import { useCallback } from "react";
 import { client } from '@fsd-ddd/web/shared/api'
-import { useMutation } from '@tanstack/react-query'
 import { InferRequestType, InferResponseType } from "hono";
+import { mutationKey } from "../lib/mutation-key";
+import { queryKey as notesListQueryKey } from '@fsd-ddd/web/features/notes-list'
+import { useCallback } from "react";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-export const useAddNoteButton = () => {
-    const { $post } = client.notes
+export const useAddNoteButtonMutation = () => {
+    const { $post } = client.notes.addNote
+    const queryClient = useQueryClient()
     const mutation = useMutation<
         InferResponseType<typeof $post>,
         Error,
         InferRequestType<typeof $post>['json']
     >({
+        mutationKey: [mutationKey],
         mutationFn: async (dto) => {
             const res = await $post({
                 json: dto
             })
             return await res.json()
         },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [notesListQueryKey] })
+        }
     })
 
     const handleClick = useCallback(() => {
