@@ -1,17 +1,14 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { z } from 'zod'
 import { addNoteCommand } from '../commands/add-note-command'
-import 'server-only';
+import { AddNoteUseCaseDtoSchema } from '@fsd-ddd/application';
 
 export const notesApp = new Hono()
   .post(
     '/',
     zValidator(
       'json',
-      z.object({
-        content: z.string(),
-      })
+      AddNoteUseCaseDtoSchema
     ),
     async (c) => {
       const dto = c.req.valid('json')

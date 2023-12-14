@@ -1,4 +1,4 @@
-import { IResult } from "types-ddd";
+import { IResult } from "rich-domain";
 import { Note } from "./note.aggregate-root";
 
 export interface NoteRepoTrait {

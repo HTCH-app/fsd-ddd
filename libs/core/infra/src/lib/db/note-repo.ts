@@ -1,5 +1,5 @@
 import { Note, NoteRepoTrait } from "@fsd-ddd/domain";
-import { IResult } from "types-ddd";
+import { IResult } from "rich-domain";
 
 export class InMemoryNoteRepo implements NoteRepoTrait {
     save(note: Note): Promise<IResult<void>> {

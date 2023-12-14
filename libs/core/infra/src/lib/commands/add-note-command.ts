@@ -1,6 +1,6 @@
 import { AddNoteUseCase, AddNoteUseCaseDto } from '@fsd-ddd/application'
 import { notesRepo } from '../instances';
-import { IResult } from 'types-ddd';
+import { IResult } from 'rich-domain';
 
 const useCase = new AddNoteUseCase({
     notesRepo

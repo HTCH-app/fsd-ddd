@@ -1,4 +1,4 @@
-import { Aggregate, IResult, Ok, type UID } from 'types-ddd'
+import { Aggregate, IResult, Ok, type UID } from 'rich-domain'
 
 export interface NoteProps {
     id?: UID;
