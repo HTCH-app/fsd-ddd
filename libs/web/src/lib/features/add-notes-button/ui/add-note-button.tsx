@@ -1,10 +1,9 @@
 'use client';
 
-import { FC, useCallback } from "react";
+import { FC } from "react";
+import { useAddNoteButton } from "./use-add-note-button";
 
 export const AddNoteButton:FC = () => {
-    const handleClick = useCallback(() => {
-        console.log('Add Note Button Clicked')
-    }, [])
+    const {handleClick} = useAddNoteButton()
     return <button onClick={handleClick}>Add Note</button>
 }

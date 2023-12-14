@@ -1,11 +1,11 @@
 import { AddNoteUseCase, AddNoteUseCaseDto } from '@fsd-ddd/application'
 import { notesRepo } from '../instances';
+import { IResult } from 'types-ddd';
 
 const useCase = new AddNoteUseCase({
     notesRepo
 });
 
-export const addNoteCommand = async (dto: AddNoteUseCaseDto): Promise<void> => {
-    const result = await useCase.execute(dto);
-    if (result.isFail()) throw new Error(result.error());
+export const addNoteCommand = async (dto: AddNoteUseCaseDto): Promise<IResult<void>> => {
+    return useCase.execute(dto);
 }

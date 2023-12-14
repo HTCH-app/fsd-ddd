@@ -1,9 +1,6 @@
 import { NoteRepoTrait } from "@fsd-ddd/domain";
 import { Fail, IUseCase, Ok, Result } from "types-ddd";
-
-export interface AddNoteUseCaseDto {
-	content: string;
-}
+import { AddNoteUseCaseDto } from "./add-note-usecase-dto";
 
 export interface Deps {
 	notesRepo: NoteRepoTrait;

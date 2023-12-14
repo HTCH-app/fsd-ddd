@@ -1,1 +1,1 @@
-export * from './lib/commands/add-note-command';
+export * from './lib/api/hono';

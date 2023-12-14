@@ -3,7 +3,7 @@ import { FC } from "react";
 
 export const HomePage:FC = () => {
     return <div>
-        <h1>Home Page Content</h1>
+        <h1>Home Page</h1>
         <AddNoteButton />
     </div>
 }
