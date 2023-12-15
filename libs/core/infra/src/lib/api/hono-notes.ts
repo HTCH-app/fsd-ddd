@@ -8,16 +8,15 @@ export const notesApp = new Hono()
   .get(
     '/listForOwnerId',
     async (c) => {
-
       const result = await listNotesCommand({
-        ownerId: 'fake-owner-id'
+        ownerId: 'fakes-owner-id'
       })
       if (result.isFail()) throw new HTTPException(400, { message: result.error() })
       const notes = result.value()
       return c.json(
         {
           ok: true,
-          notes,
+          notes
         },
       )
     }
